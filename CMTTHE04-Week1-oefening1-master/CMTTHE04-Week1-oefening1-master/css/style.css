@@ -16,7 +16,7 @@ body * {
 fish {
     background-image: url(../images/fish.png);
     width:130px; height: 110px;
-    
+    z-index: 1;
     /* kleur variatie met css */
     -webkit-filter: hue-rotate(90deg);
     filter: hue-rotate(90deg);
@@ -30,7 +30,7 @@ fish {
 fish2 {
   background-image: url(../images/fish.png);
   width:130px; height: 110px;
-  
+  z-index: 1;
   /* kleur variatie met css */
   -webkit-filter: hue-rotate(90deg);
   filter: hue-rotate(90deg);
@@ -43,14 +43,13 @@ fish2 {
 .dead {
     background-image: url(../images/bones.png);
     transform:translate(0px, 0px);
-    animation: died 4s linear infinite;
+    animation: died 4s linear ;
 }
 
 bubble {
     background-image: url(../images/bubble.png);
     width:55px; height: 55px;
     left:50vw;
-    transition: all 2s ease-out;
     animation: bubbleup 4s linear infinite ;
 }
 
