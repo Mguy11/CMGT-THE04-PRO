@@ -6,16 +6,14 @@
 let screenWidth = window.innerWidth - 130
 let screenHeight = window.innerHeight - 110
 
-let timeoutID
+let deadfish
+
+let timeoutID1
 let timeoutID2
 let timeoutID3
-let timeoutID4
 
-let deadfish = 0
-
-
-
-
+let count1 = 0
+let count2 = 0
 // Creates a fish element with a random x and y value on your screen. They move up and down on your screen. The fishes themself also have
 // a different colour and a dying animation when clicked.
 
@@ -43,6 +41,15 @@ function upFish() {
     fish.classList.add("dead")
     deadfish++
 });
+    timeoutID1 = setTimeout(function() {upFish()}, 2000);
+
+    if(count1 === 50){
+        clearTimeout(timeoutID1)
+    }
+
+
+    count1++
+    console.log(count1)
 }
 
 // Creates a fish element with a random x and y value on your screen. They move left to right on your screen. The fishes themself also have
@@ -73,9 +80,16 @@ function rightFish()
             fish2.classList.add("dead") 
             deadfish++
         });
+       timeoutID2 = setTimeout(function() {rightFish()}, 2000);
+
+       if(count2 === 50){
+        clearTimeout(timeoutID2)
+    }
+    
+       count2++
+
+       console.log(count2)
 }
-
-
 //
 // geef de bubble een random positie
 //
@@ -84,60 +98,41 @@ function rightFish()
 
 function bubbleCreate()
 {
-
+    
     let bubble = document.createElement('bubble')
     document.body.appendChild(bubble)
     
     bubble.style.top = Math.random() * screenHeight + "px"
     bubble.style.left = Math.random() * screenWidth + "px"
     
-}
-
-//The aquarium function creates 50 fishes of both forms, upwards floating and left to right floating, and also creates 100 randomly positioned
-
-function aquarium()
-{   
-   
-    let count1 = 0
-    let count2 = 0
-
-    //Create 50 bubbles with an interval of 3 seconds.
-    for(i=0; i < 50; i++){
-        timeoutID3 = window.setTimeout(bubbleCreate, 5000);
-        timeoutID4 = window.setTimeout(bubbleCreate, 2000);
-        }
-    //Create 50 fish swimming up
-     for(i=0; i < 50; i++){
-         timeoutID = window.setTimeout(upFish, 1000 );
-         count1++
-     }
-     //Create 50 fish swimming right
-     for(i=0; i < 50; i++){
-         timeoutID2 = window.setTimeout(rightFish, 1000 );
-         count2++
-     }
-
-    console.log(count1)
-    console.log(count2)
-
+    timeoutID3 = setTimeout(function() {bubbleCreate()}, 1000);
     
 }
 
+//
 
+
+function aquarium(){
+   
+    upFish();
+    rightFish();
+    bubbleCreate();
+
+ 
+}
 //
 // roep een functie aan als alles geladen is
 //
-
-
-aquarium()
-
-
-
-
-
-
-window.addEventListener("load", function ()
+if(count1 === 10 && count2 === 10){
+    clearTimeout(timeoutID1);
+    clearTimeout(timeoutID2);
+    clearTimeout(timeoutID3);
+}
+else{
+    aquarium();
+}
+/*window.addEventListener("load", function ()
 {
     console.log("start het aquarium")
     
-})
+})*/
