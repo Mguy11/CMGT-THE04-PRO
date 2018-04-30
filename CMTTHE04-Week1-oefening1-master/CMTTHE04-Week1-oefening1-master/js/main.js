@@ -101,7 +101,7 @@ function bubbleCreate() {
 
 }
 
-//Added a function to run all the funtions at once to create the "Aquarium"
+//Added a function to run all the funtions at once to create the 
 function aquarium() {
 
     upFish();
@@ -110,8 +110,6 @@ function aquarium() {
 
 }
 
-window.addEventListener("load", function ()
-{
-    console.log("start het aquarium")
-    
-})
+
+aquarium();
+
