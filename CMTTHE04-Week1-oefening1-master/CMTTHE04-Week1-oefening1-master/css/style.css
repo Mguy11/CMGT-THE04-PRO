@@ -40,6 +40,23 @@ fish2 {
   animation: fishanimation2 4s ease-in-out infinite alternate;
   
 }
+
+shark1 {
+  background-image: url(../images/shark2.png);
+  width:310px; height: 180px;
+  z-index: 1;
+  transition: all 2s ease-out;
+  animation: shark-left 15s ease-in-out;
+  
+}
+shark2 {
+  background-image: url(../images/shark1.png);
+  width:310px; height: 180px;
+  z-index: 1;
+  transition: all 2s ease-out;
+  animation: shark-right 15s ease-in-out;
+}
+
 .dead {
     background-image: url(../images/bones.png);
     transform:translate(0px, 0px);
@@ -68,7 +85,7 @@ background {
     transform: translateY(80px);
   }
 }
-@keyframes fishanimation2{
+@keyframes fishanimation2 {
   0% {
     transform: translateX(20px);
   }
@@ -101,5 +118,21 @@ background {
     }
   100% {
      transform: translate(0vw); 
+    }
+ } 
+ @keyframes shark-left {
+  0% {
+     transform: translate(150vw); 
+    }
+  100% {
+     transform: translate(-50vw); 
+    }
+ } 
+ @keyframes shark-right {
+  100% {
+     transform: translate(150vw); 
+    }
+  0% {
+     transform: translate(-50vw); 
     }
  } 
