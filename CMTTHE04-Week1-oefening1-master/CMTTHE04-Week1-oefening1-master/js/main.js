@@ -38,9 +38,6 @@ function upFish() {
 
     fish.addEventListener("click", function () {
         fish.classList.add("dead")
-        if(fish.style.animationName === 'died'){
-            console.log('hooi')
-        }
     });
 
     timeoutID1 = setTimeout(function () { upFish() }, 2000);

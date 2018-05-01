@@ -20,8 +20,6 @@ fish {
     /* kleur variatie met css */
     -webkit-filter: hue-rotate(90deg);
     filter: hue-rotate(90deg);
-    transition: all 2s ease-out;
-    transform:translate(0px, 200px);
     /* animatie met css */
     animation: fishanimation 4s ease-in-out infinite alternate;
     
@@ -30,12 +28,11 @@ fish {
 fish2 {
   background-image: url(../images/fish.png);
   width:130px; height: 110px;
-  z-index: 1;
+  z-index: 2;
   /* kleur variatie met css */
   -webkit-filter: hue-rotate(90deg);
   filter: hue-rotate(90deg);
-  transition: all 2s ease-out;
-  transform:translate(0px, 200px);
+  
   /* animatie met css */
   animation: fishanimation2 4s ease-in-out infinite alternate;
   
@@ -52,15 +49,15 @@ shark1 {
 shark2 {
   background-image: url(../images/shark1.png);
   width:310px; height: 180px;
-  z-index: 1;
+  z-index: 2;
   transition: all 2s ease-out;
   animation: shark-right 15s ease-in-out;
 }
 
 .dead {
     background-image: url(../images/bones.png);
-    transform:translate(0px, 0px);
-    animation: died 4s linear ;
+    animation: died 4s linear forwards;
+
 }
 
 bubble {
@@ -97,10 +94,12 @@ background {
 @keyframes died {
   0% {
     transform: translateY(100vh);
+    
   }
   
   100% {
     transform: translateY(0vh);
+    visibility: hidden;
   }
 }
 @keyframes bubbleup {
@@ -134,5 +133,6 @@ background {
     }
   0% {
      transform: translate(-50vw); 
+     
     }
  } 
