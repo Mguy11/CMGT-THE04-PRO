@@ -64,7 +64,7 @@ bubble {
     background-image: url(../images/bubble.png);
     width:55px; height: 55px;
     left:50vw;
-    animation: bubbleup 4s linear infinite ;
+    animation: bubble-up 4s linear infinite ;
 }
 
 background {
@@ -102,7 +102,7 @@ background {
     visibility: hidden;
   }
 }
-@keyframes bubbleup {
+@keyframes bubble-up {
   0% {
     transform: translateY(100vh);
   }
