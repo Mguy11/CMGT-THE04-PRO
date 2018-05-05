@@ -124,7 +124,8 @@ background {
      transform: translate(150vw); 
     }
   100% {
-     transform: translate(-50vw); 
+     transform: translate(-50vw);
+     visibility: hidden; 
     }
  } 
  @keyframes shark-right {
@@ -133,6 +134,7 @@ background {
     }
   0% {
      transform: translate(-50vw); 
+     visibility: hidden;
      
     }
  } 
