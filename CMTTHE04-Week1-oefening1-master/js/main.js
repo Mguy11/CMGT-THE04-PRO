@@ -47,7 +47,7 @@ function upFish() {
 
     });
 
-    timeoutID1 = setTimeout(function () { upFish() }, 2000);
+    timeoutID1 = setTimeout(function () { upFish() }, 1000);
 
     if (count1 === 50) {
         clearTimeout(timeoutID1)
@@ -86,7 +86,7 @@ function rightFish() {
     });
     timeoutID2 = setTimeout(function () {
         rightFish()
-    }, 2000);
+    }, 1000);
 
     if (count2 === 50) {
         clearTimeout(timeoutID2)
@@ -151,7 +151,7 @@ function bubbleCreate() {
     timeoutID3 = setTimeout(function () {
         bubbleCreate()
     }, 1000);
-    if (count1 === 75) {
+    if (count1 === 50) {
         clearTimeout(timeoutID3)
     }
 
