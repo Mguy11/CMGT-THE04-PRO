@@ -29,22 +29,6 @@ var Ball = (function () {
     };
     return Ball;
 }());
-var Game = (function () {
-    function Game() {
-        this.balls = [];
-        this.balls.push(new Ball());
-        this.ball = new Ball();
-        this.gameLoop();
-    }
-    Game.prototype.gameLoop = function () {
-        var _this = this;
-        this.balls;
-        this.ball.update();
-        requestAnimationFrame(function () { return _this.gameLoop(); });
-    };
-    return Game;
-}());
-window.addEventListener("load", function () { return new Game(); });
 var Paddle = (function () {
     function Paddle() {
         var _this = this;
@@ -90,4 +74,25 @@ var Paddle = (function () {
     };
     return Paddle;
 }());
+var Game = (function () {
+    function Game() {
+        this.balls = [];
+        this.maxBalls = 10;
+        for (var i = 0; i < this.maxBalls; i++) {
+            this.balls.push(new Ball());
+        }
+        this.paddle = new Paddle();
+        this.gameLoop();
+    }
+    Game.prototype.gameLoop = function () {
+        var _this = this;
+        for (var i = 0; i < this.maxBalls; i++) {
+            this.balls[i].update();
+        }
+        this.paddle.update();
+        requestAnimationFrame(function () { return _this.gameLoop(); });
+    };
+    return Game;
+}());
+window.addEventListener("load", function () { return new Game(); });
 //# sourceMappingURL=main.js.map

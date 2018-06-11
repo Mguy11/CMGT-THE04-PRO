@@ -1,19 +1,29 @@
 /// <reference path="ball.ts"/>
+/// <reference path="paddle.ts"/>
 
 class Game {
 
-    balls:Ball[] = []
-    private ball:Ball
+    
+    private balls:Ball[] = []
+    private maxBalls: number = 10
+    private paddle:Paddle
     
     constructor() {
-        this.balls.push(new Ball())
-        this.ball = new Ball()
+        
+        for(let i = 0; i < this.maxBalls; i++)
+        {
+            this.balls.push(new Ball())
+        }
+        this.paddle = new Paddle()
         this.gameLoop()
     }
     
     private gameLoop(){
-        this.balls
-        this.ball.update()
+        for(let i = 0; i < this.maxBalls; i++)
+        {
+            this.balls[i].update()
+        }
+        this.paddle.update()
         requestAnimationFrame(()=>this.gameLoop())
     }
 } 
