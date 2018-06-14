@@ -1,18 +1,36 @@
-/// <reference path="player.ts"/>
 
-class Game{
 
-    private player:Player
+class Game {
 
-    constructor(){
-        this.player = new Player()
-        this.gameloop()
+    private screen:any
+    private gameOver:any
+
+    constructor()
+    {
+
+        this.screen = new StartScreen(this);
+        this.screen = new GameOverScreen();
+        this.gameLoop()
+    }
+    
+    private gameLoop():void{
+        
+        this.screen.update()
+        requestAnimationFrame(() => this.gameLoop())
     }
 
-    private gameloop(){
-        this.player.update()
-        requestAnimationFrame(()=>this.gameloop())
+    public showPlayScreen()
+    {
+        document.body.innerHTML = ""
+        this.screen = new PlayScreen(this)
     }
-}
+
+    public endGame()
+    {
+        document.body.innerHTML = ""
+        this.screen = new GameOverScreen()
+    }
+  
+} 
 
 window.addEventListener("load", () => new Game())

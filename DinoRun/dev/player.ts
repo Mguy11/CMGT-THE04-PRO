@@ -3,42 +3,42 @@ class Player{
     private x: number = 0
     private y: number = 0
 
-    private leftkey: number
-    private rightkey: number
-    private upkey: number
+    private downkey : number
+    private upkey   : number
 
-    private leftSpeed: number = 0
-    private rightSpeed: number = 0
-    private upSpeed: number = 0
+    private downSpeed   : number = 0
+    private upSpeed     : number = 0
 
-    constructor(){
+    constructor(xp:number, up:number, down:number){
         this.div = document.createElement("player")
         document.body.appendChild(this.div)
 
         
-        this.leftkey = 31
-        this.rightkey = 33
-        this.upkey = 18
+        this.upkey   = up
+        this.downkey = down
+        
+        this.x      = xp
+        this.y      = 200
 
         
+        window.addEventListener("keydown", (e: KeyboardEvent) => this.onKeyDown(e))
         window.addEventListener("keyup", (e: KeyboardEvent) => this.onKeyUp(e))
 
+
     }
 
-    private onKeyLeft(e: KeyboardEvent): void {
-        switch (e.keyCode) {
-            case this.upkey:
-                this.leftSpeed = 5
-                break
-        }
+    public getRectangle() {
+        return this.div.getBoundingClientRect()
     }
 
-    private onKeyRight(e: KeyboardEvent): void {
+    private onKeyDown(e: KeyboardEvent): void {
         switch (e.keyCode) {
             case this.upkey:
-                this.rightSpeed = 5
+                this.upSpeed = 5
                 break
-            
+            case this.downkey:
+                this.downSpeed = 5
+                break
         }
     }
 
@@ -47,23 +47,20 @@ class Player{
             case this.upkey:
                 this.upSpeed = 0
                 break
-           
+            case this.downkey:
+                this.downSpeed = 0
+                break
         }
     }
 
     public update(){
 
-        let newY = this.y - this.upSpeed
-        let newX = this.x - this.leftSpeed
+        let newY = this.y - this.upSpeed + this.upSpeed
 
-        // check of de paddle binnen beeld blijft
-        if (newY > 0 && newY + 100 < window.innerHeight)
-        {
-            this.y = newY
-            this.x = newX
+        // als de paddle binnen beeld blijft, dan ook echt updaten
+        if (newY > 0 && newY + 100 < window.innerHeight) this.y = newY
 
-            this.div.style.transform = `translate(${this.x}px, ${this.y}px)`
-        }
+        this.div.style.transform = `translate(${this.x}px, ${this.y}px)`
          
 
     }
