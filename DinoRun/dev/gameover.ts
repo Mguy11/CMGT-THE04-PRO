@@ -1,8 +1,12 @@
 class GameOverScreen {
-    constructor() {
 
-    }
-    update() {
+   constructor()
+   {
 
-    }
+   }
+  
+   public update()
+   {
+       
+   }
 }

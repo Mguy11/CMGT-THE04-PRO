@@ -3,26 +3,53 @@ class PlayScreen {
     game:Game
     
     private player: Player
-    private platforms: Platforms[] = []
-    public lives: number = 3
+    private platform: Platforms[] = []
+    private ground: Ground[] = []
+   
 
     constructor(g:Game) {
-        this.game = g
-        this.player = new Player(20, 87, 83)
         
+        this.game = g
+        this.player = new Player()
+
+        for (let i = 0; i < 5; i++) {
+            this.platform.push(new Platforms())
+        }
+
+        for (let i = 0; i < 5; i++) {
+            this.ground.push(new Ground())
+            
+            
+        }
 
     }
     
-    public loseLife()
-    {
-        this.lives--;
-    }
-
     public update(): void {
 
-       
+        for (let p of this.platform) {
+            if (this.checkCollision(p.getRectangle(), this.player.getRectangle()))
+            {
+                    this.player.hitPlatform()
+                   
+            }
+
+            p.update()
+
+            
+        }
+
+        for (let g of this.ground) {
+            if (this.checkCollision(g.getRectangle(), this.player.getRectangle()))
+            {
+                    this.player.hitPlatform()
+                   
+            }
+            g.update()
+            
+        }
 
         this.player.update()
+       
         
     }
 
@@ -31,6 +58,9 @@ class PlayScreen {
             b.left <= a.right &&
             a.top <= b.bottom &&
             b.top <= a.bottom)
+
+            console.log(this.checkCollision)
+            
     }
 
 

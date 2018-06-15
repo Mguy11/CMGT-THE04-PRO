@@ -1,28 +1,43 @@
-class Player{
+/// <reference path="playscreen.ts"/>
+
+class Player {
     private div: HTMLElement
-    private x: number = 0
-    private y: number = 0
+ 
+    private x: number 
+    private y: number 
 
-    private downkey : number
-    private upkey   : number
+    private upkey       : number
+    private leftkey     : number
+    private rightkey    : number
 
-    private downSpeed   : number = 0
     private upSpeed     : number = 0
+    private leftSpeed   : number = 0
+    private rightSpeed  : number = 0
+    private gravity     : number = 5
+    private jumpforce   : number = 5
 
-    constructor(xp:number, up:number, down:number){
+    public grounded: boolean = true
+
+    private innerWidth = window.innerWidth - 173
+    private innerHeight = window.innerHeight - 207
+
+    constructor(){
+
         this.div = document.createElement("player")
         document.body.appendChild(this.div)
 
+        this.upkey   = 17
+        this.leftkey = 30
+        this.rightkey = 32
         
-        this.upkey   = up
-        this.downkey = down
+        this.x      = 25
+        this.y      = 600
         
-        this.x      = xp
-        this.y      = 200
+       let keypressup = window.addEventListener("keydown", (e: KeyboardEvent) => this.onKeyDown(e));
+       let keypressdown = window.addEventListener("keyup", (e: KeyboardEvent) => this.onKeyUp(e));
 
-        
-        window.addEventListener("keydown", (e: KeyboardEvent) => this.onKeyDown(e))
-        window.addEventListener("keyup", (e: KeyboardEvent) => this.onKeyUp(e))
+       console.log(keypressup);
+       console.log(keypressdown);
 
 
     }
@@ -32,33 +47,55 @@ class Player{
     }
 
     private onKeyDown(e: KeyboardEvent): void {
-        switch (e.keyCode) {
-            case this.upkey:
-                this.upSpeed = 5
+        switch (e.key) {
+            case "w":
+                this.jump()
                 break
-            case this.downkey:
-                this.downSpeed = 5
+            case "a":
+                this.leftSpeed = 5
+                break
+            case "d":
+                this.rightSpeed = 5
                 break
         }
     }
 
     private onKeyUp(e: KeyboardEvent): void {
-        switch (e.keyCode) {
-            case this.upkey:
+        switch (e.key) {
+            case "w":
                 this.upSpeed = 0
+                this.gravity = 9
                 break
-            case this.downkey:
-                this.downSpeed = 0
+            case "a":
+                this.leftSpeed = 0
+                break
+            case "d":
+                this.rightSpeed = 0
                 break
         }
+    }
+    private jump()
+    {   
+            this.upSpeed = 10
+            this.gravity = 4
+            this.grounded = false
+        
+    }
+    public hitPlatform()
+    {
+        this.gravity = 0
+        
     }
 
     public update(){
 
-        let newY = this.y - this.upSpeed + this.upSpeed
-
-        // als de paddle binnen beeld blijft, dan ook echt updaten
-        if (newY > 0 && newY + 100 < window.innerHeight) this.y = newY
+        let newX = this.x - this.leftSpeed + this.rightSpeed
+        let newY = this.y - this.upSpeed + this.gravity
+        
+        
+        if (newX > 0 && newX + 100 < innerWidth) this.x = newX
+        if (newY > 0 && newY + 100 < innerHeight) this.y = newY
+        
 
         this.div.style.transform = `translate(${this.x}px, ${this.y}px)`
          

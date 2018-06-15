@@ -9,7 +9,7 @@ class Game {
     {
 
         this.screen = new StartScreen(this);
-        this.screen = new GameOverScreen();
+       
         this.gameLoop()
     }
     
@@ -28,7 +28,7 @@ class Game {
     public endGame()
     {
         document.body.innerHTML = ""
-        this.screen = new GameOverScreen()
+        
     }
   
 } 
